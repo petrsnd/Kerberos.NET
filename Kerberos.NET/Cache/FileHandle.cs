@@ -5,7 +5,10 @@
 
 using System;
 using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
+using Microsoft.Win32.SafeHandles;
 
 namespace Kerberos.NET.Client
 {
@@ -17,6 +20,7 @@ namespace Kerberos.NET.Client
         private readonly FileMode mode;
         private readonly FileAccess access;
         private readonly FileShare share;
+        private static readonly MethodInfo? SetUnixFileMode = TryGetSetUnixFileMode();
 
         private static readonly TimeSpan LockWaitTimeout = TimeSpan.FromMilliseconds(5000);
 
@@ -41,7 +45,21 @@ namespace Kerberos.NET.Client
 
         public FileStream OpenStream()
         {
-            return File.Open(this.file, this.mode, this.access, this.share);
+            var fs = File.Open(this.file, this.mode, this.access, this.share);
+            // When we create file on Unix we should make sure only current user has access to it.
+            if (this.access == FileAccess.Write && SetUnixFileMode != null)
+            {
+                const int UserRead = 256;
+                const int UserWrite = 128;
+
+                try
+                {
+                    SetUnixFileMode.Invoke(null, new object[] { fs.SafeFileHandle, (int)(UserRead | UserWrite) });
+                }
+                catch { };
+            }
+
+            return fs;
         }
 
         public IDisposable AcquireReadLock() => new FileLock(this.mutex);
@@ -58,6 +76,24 @@ namespace Kerberos.NET.Client
             return "Global\\" + type + "_" + file.Replace(Path.DirectorySeparatorChar, '_')
                                                  .Replace(Path.AltDirectorySeparatorChar, '_')
                                                  .Replace(Path.VolumeSeparatorChar, '_');
+        }
+
+        private static MethodInfo? TryGetSetUnixFileMode()
+        {
+            MethodInfo? mi = null;
+
+            // SetUnixFileMode was introduced in .NET 7.0 and works only on Unix systems
+            // We ignore any reflection errors during attempt to load it.
+            if (!RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+            {
+                try
+                {
+                    mi = typeof(File).GetMethod("SetUnixFileMode", new Type[] { typeof(SafeFileHandle), Type.GetType("System.IO.UnixFileMode") });
+                }
+                catch { }
+            }
+
+            return mi;
         }
 
         private class FileLock : IDisposable
