@@ -32,12 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DnsClient" Version="1.7.0" />
     <PackageReference Include="Humanizer.Core" Version="2.14.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Kerberos.NET\Kerberos.NET.csproj" />
-    <ProjectReference Include="..\Kerberos.NET\Kerberos.NET.PortableDns.csproj" Condition="!$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))" />
     <ProjectReference Include="..\Samples\KerbDumpCore\KerbDumpCore.csproj" />
   </ItemGroup>
 
