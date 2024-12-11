@@ -2,8 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Kerberos.NET.CommandLine.Dns;
-using Kerberos.NET.Dns;
 
 namespace Kerberos.NET.CommandLine
 {
@@ -12,8 +10,6 @@ namespace Kerberos.NET.CommandLine
         [STAThread]
         static void Main(string[] args)
         {
-            DnsQuery.RegisterImplementation(new PlatformIndependentDnsClient());
-
             var assembly = Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().ProcessName);
 
             string loadingModule = null;
