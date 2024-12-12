@@ -6,22 +6,27 @@ namespace Kerberos.NET.PortableDns
 {
     public static class PortableDnsClient
     {
-        public static void SetNameServers(params NameServer[] nameServers)
+        public static void Configure()
+        {
+            PortableDnsImplementation.Options = new LookupClientOptions();
+        }
+
+        public static void Configure(params NameServer[] nameServers)
         {
             PortableDnsImplementation.Options = new LookupClientOptions(nameServers);
         }
 
-        public static void SetNameServers(params IPEndPoint[] nameServers)
+        public static void Configure(params IPEndPoint[] nameServers)
         {
             PortableDnsImplementation.Options = new LookupClientOptions(nameServers);
         }
 
-        public static void SetNameServers(params IPAddress[] nameServers)
+        public static void Configure(params IPAddress[] nameServers)
         {
             PortableDnsImplementation.Options = new LookupClientOptions(nameServers);
         }
 
-        public static void SetNameServers(params string[] nameServers)
+        public static void Configure(params string[] nameServers)
         {
             PortableDnsImplementation.Options = new LookupClientOptions(nameServers.Select(n => {
                 var parts = n.Split(':');

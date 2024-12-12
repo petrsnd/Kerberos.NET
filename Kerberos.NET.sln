@@ -29,7 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client Tools", "Client Tool
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bruce", "Bruce\Bruce.csproj", "{D12B0644-0D57-45ED-AA0A-AB18D593CCA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kerberos.NET.PortableDns", "Kerberos.NET.PortableDns\Kerberos.NET.PortableDns.csproj", "{3085F7D7-B384-4EB6-B5F4-CAEDC7C1C0E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kerberos.NET.PortableDns", "Kerberos.NET.PortableDns\Kerberos.NET.PortableDns.csproj", "{3085F7D7-B384-4EB6-B5F4-CAEDC7C1C0E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerbPortableDnsTest", "KerbPortableDnsTest\KerbPortableDnsTest.csproj", "{A67F814F-6A15-4D76-9198-775A82675ADB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{3085F7D7-B384-4EB6-B5F4-CAEDC7C1C0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3085F7D7-B384-4EB6-B5F4-CAEDC7C1C0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3085F7D7-B384-4EB6-B5F4-CAEDC7C1C0E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A67F814F-6A15-4D76-9198-775A82675ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A67F814F-6A15-4D76-9198-775A82675ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A67F814F-6A15-4D76-9198-775A82675ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A67F814F-6A15-4D76-9198-775A82675ADB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{5115DFE1-AD08-4AF5-B88C-F436744D7A3A} = {8F0C1D56-CBBB-4B8B-81D1-5D1544AD5C72}
 		{D12B0644-0D57-45ED-AA0A-AB18D593CCA3} = {8BD43321-3C92-4D6F-B965-783F2CC4CEE1}
 		{3085F7D7-B384-4EB6-B5F4-CAEDC7C1C0E6} = {E3EE549C-8245-45E7-A964-E38C78DC9FD3}
+		{A67F814F-6A15-4D76-9198-775A82675ADB} = {8BD43321-3C92-4D6F-B965-783F2CC4CEE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17150968-CFF9-4183-989D-C93E19033096}
