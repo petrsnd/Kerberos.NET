@@ -25,7 +25,6 @@ namespace Kerberos.NET.PortableDns
         {
             var client = Create();
             var response = await client.QueryAsync(query, (QueryType)type);
-
             var srvRecords = response.Answers.SrvRecords().Select(a => new DnsRecord
             {
                 Name = a.DomainName,
