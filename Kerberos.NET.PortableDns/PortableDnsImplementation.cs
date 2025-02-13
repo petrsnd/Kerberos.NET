@@ -24,9 +24,7 @@ namespace Kerberos.NET.PortableDns
         public async Task<IReadOnlyCollection<DnsRecord>> Query(string query, DnsRecordType type)
         {
             var client = Create();
-
             var response = await client.QueryAsync(query, (QueryType)type);
-
             var srvRecords = response.Answers.SrvRecords().Select(a => new DnsRecord
             {
                 Name = a.DomainName,
@@ -43,9 +41,8 @@ namespace Kerberos.NET.PortableDns
             foreach (var srv in srvRecords)
             {
                 var c1 = merged.Where(m => m.Key.Equals(srv.Target, StringComparison.InvariantCultureIgnoreCase));
-
                 var canon = c1.SelectMany(r => r);
-
+                var canon = c1.SelectMany(r => r);
                 srv.Canonical = canon.ToList();
             }
 
