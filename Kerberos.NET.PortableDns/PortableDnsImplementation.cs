@@ -42,7 +42,6 @@ namespace Kerberos.NET.PortableDns
             {
                 var c1 = merged.Where(m => m.Key.Equals(srv.Target, StringComparison.InvariantCultureIgnoreCase));
                 var canon = c1.SelectMany(r => r);
-                var canon = c1.SelectMany(r => r);
                 srv.Canonical = canon.ToList();
             }
 
